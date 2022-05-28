@@ -35,6 +35,15 @@ namespace ArbolesGenerales
                 padre.Hijo = new Nodo(dato);
                 return padre.Hijo;
             }
+            else
+            {
+                Nodo hijoactual = padre.Hijo;
+                while (hijoactual.Hermano != null){
+                    hijoactual = hijoactual.Hermano;
+                }
+                hijoactual.Hermano = new Nodo(dato);
+                return hijoactual.Hermano;
+            }
         }
     }
 }
