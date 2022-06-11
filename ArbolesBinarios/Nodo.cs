@@ -16,7 +16,7 @@ namespace ArbolesBinarios
         {
             Dato = dato;
             SubArbolIzq = subArbolIzq;
-            SubArbolIzq = subArbolIzq;
+            SubArbolDer = subArbolDer;
         }
     }
 }

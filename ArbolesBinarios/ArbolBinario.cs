@@ -10,7 +10,7 @@ namespace ArbolesBinarios
     {
         private readonly Nodo raiz;
         public Nodo Raiz { get { return raiz; } }
-        public ArbolBinario(string dato)
+        public ArbolBinario(int dato)
         {
             raiz = new Nodo(dato);
         }
@@ -46,7 +46,32 @@ namespace ArbolesBinarios
                 }
                 Insertar(dato, nodo.SubArbolDer);
             }
+        }
 
+        public void RecorrerArbol(Nodo nodo, ref string recorrer)
+        {
+            if(nodo != null)
+            {
+                string raiz = string.Empty;
+                if (recorrer == string.Empty)
+                {
+                    raiz = "Raiz";
+                }
+
+                recorrer += $"{raiz}{nodo.Dato,5}\n";
+
+                if (nodo.SubArbolIzq != null)
+                {
+                    recorrer += $"{nodo.Dato,-5}<- ";
+                    RecorrerArbol(nodo.SubArbolIzq, ref recorrer);
+                }
+
+                if (nodo.SubArbolDer != null)
+                {
+                    recorrer += $"{nodo.Dato,-5}-> ";
+                    RecorrerArbol(nodo.SubArbolDer, ref recorrer);
+                }
+            }
         }
     }
 }
