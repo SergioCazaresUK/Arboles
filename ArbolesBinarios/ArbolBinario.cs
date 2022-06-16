@@ -99,41 +99,58 @@ namespace ArbolesBinarios
                 nodo = this.raiz;
             }
 
-            string recorrido = string.Empty;
+            string recorrer = string.Empty;
 
             switch (tipoRecorrido)
             {
                 case TipoRecorrido.Preorden:
-                    RecorridoPreorden(nodo, ref recorrido);
+                    RecorridoPreorden(nodo, ref recorrer);
                     break;
 
                 case TipoRecorrido.Inorden:
-                    RecorridoInorden(nodo, ref recorrido);
+                    RecorridoInorden(nodo, ref recorrer);
                     break;
 
                 case TipoRecorrido.Posorden:
-                    RecorridoPosorden(nodo, ref recorrido);
+                    RecorridoPosorden(nodo, ref recorrer);
                     break;
 
                 default: throw new Exception("Recorrido incorrecto");
             }
 
-            return $"Tipo recorrido: {tipoRecorrido}: {recorrido}";
+            return $"Tipo recorrido: {tipoRecorrido}: {recorrer}";
         }
-        private void RecorridoPreorden(Nodo nodo, ref string recorrido)
+        private void RecorridoPreorden(Nodo nodo, ref string recorrer)
         {
             if (nodo != null)
             {
-                AgregarDato(nodo, ref recorrido);
+                AgregarDato(nodo, ref recorrer);
 
                 if (nodo.SubArbolIzq != null)
                 {
-                    RecorridoPreorden(nodo.SubArbolIzq, ref recorrido);
+                    RecorridoPreorden(nodo.SubArbolIzq, ref recorrer);
                 }
 
                 if (nodo.SubArbolDer != null)
                 {
-                    RecorridoPreorden(nodo.SubArbolDer, ref recorrido);
+                    RecorridoPreorden(nodo.SubArbolDer, ref recorrer);
+                }
+            }
+        }
+        private void RecorridoInorden(Nodo nodo, ref string recorrer)
+        {
+            if (nodo != null)
+            {
+                if (nodo.SubArbolIzq != null)
+                {
+                    RecorridoInorden(nodo.SubArbolIzq, ref recorrer);
+                }
+
+                AgregarDato(nodo, ref recorrer);
+
+                if (nodo.SubArbolDer != null)
+                {
+                    RecorridoInorden(nodo.SubArbolDer, ref recorrer);
                 }
             }
         }
