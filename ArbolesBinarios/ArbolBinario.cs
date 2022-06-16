@@ -73,5 +73,18 @@ namespace ArbolesBinarios
                 }
             }
         }
+
+        public string ObtenerArbol(Nodo nodo = null)
+        {
+            if (nodo == null)
+            {
+                nodo = this.raiz;
+            }
+
+            string recorrido = string.Empty;
+            RecorrerArbol(nodo, ref recorrido);
+            return recorrido;
+        }
+
     }
 }
