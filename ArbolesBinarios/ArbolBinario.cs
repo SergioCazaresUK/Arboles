@@ -154,6 +154,23 @@ namespace ArbolesBinarios
                 }
             }
         }
+        private void RecorridoPosorden(Nodo nodo, ref string recorrer)
+        {
+            if (nodo != null)
+            {
+                if (nodo.SubArbolIzq != null)
+                {
+                    RecorridoPosorden(nodo.SubArbolIzq, ref recorrer);
+                }
+
+                if (nodo.SubArbolDer != null)
+                {
+                    RecorridoPosorden(nodo.SubArbolDer, ref recorrer);
+                }
+
+                AgregarDato(nodo, ref recorrer);
+            }
+        }
 
     }
 }
