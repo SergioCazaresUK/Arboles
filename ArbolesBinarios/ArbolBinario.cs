@@ -81,9 +81,61 @@ namespace ArbolesBinarios
                 nodo = this.raiz;
             }
 
+            string recorrer = string.Empty;
+            RecorrerArbol(nodo, ref recorrer);
+            return recorrer;
+        }
+
+        private void AgregarDato(Nodo nodo, ref string recorrer)
+        {
+            string coma = (recorrer == string.Empty) ? string.Empty : ",";
+            recorrer += $"{coma}{nodo.Dato}";
+        }
+        public string Recorrido(Nodo nodo = null,
+           TipoRecorrido tipoRecorrido = TipoRecorrido.Preorden)
+        {
+            if (nodo == null)
+            {
+                nodo = this.raiz;
+            }
+
             string recorrido = string.Empty;
-            RecorrerArbol(nodo, ref recorrido);
-            return recorrido;
+
+            switch (tipoRecorrido)
+            {
+                case TipoRecorrido.Preorden:
+                    RecorridoPreorden(nodo, ref recorrido);
+                    break;
+
+                case TipoRecorrido.Inorden:
+                    RecorridoInorden(nodo, ref recorrido);
+                    break;
+
+                case TipoRecorrido.Posorden:
+                    RecorridoPosorden(nodo, ref recorrido);
+                    break;
+
+                default: throw new Exception("Recorrido incorrecto");
+            }
+
+            return $"Tipo recorrido: {tipoRecorrido}: {recorrido}";
+        }
+        private void RecorridoPreorden(Nodo nodo, ref string recorrido)
+        {
+            if (nodo != null)
+            {
+                AgregarDato(nodo, ref recorrido);
+
+                if (nodo.SubArbolIzq != null)
+                {
+                    RecorridoPreorden(nodo.SubArbolIzq, ref recorrido);
+                }
+
+                if (nodo.SubArbolDer != null)
+                {
+                    RecorridoPreorden(nodo.SubArbolDer, ref recorrido);
+                }
+            }
         }
 
     }
